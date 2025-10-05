@@ -11,6 +11,7 @@
 *.userprefs
 *.blend1
 *.blend1.meta
+*.blob
 Logs/*
 .vscode/*
 .vs/*

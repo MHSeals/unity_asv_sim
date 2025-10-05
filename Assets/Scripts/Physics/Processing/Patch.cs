@@ -20,7 +20,7 @@ namespace WaterInteraction
         NativeArray<float3> targetPositionBuffer;
         // Output job parameters
         NativeArray<float3> projectedPositionWorldSpaceBuffer;
-        NativeArray<float3> candidatePositionBuffer;
+        NativeArray<float3> candidatePositionWorldSpaceBuffer;
         NativeArray<float3> directionBuffer;
         NativeArray<int> stepCountBuffer;
         NativeArray<float> errorBuffer;
@@ -59,7 +59,7 @@ namespace WaterInteraction
             numberOfGridPoints = baseGridMesh.vertices.Length; 
             // Allocate the buffers
             projectedPositionWorldSpaceBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
-            candidatePositionBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
+            candidatePositionWorldSpaceBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
             targetPositionBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
             directionBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
             stepCountBuffer = new NativeArray<int>(numberOfGridPoints, Allocator.Persistent);
@@ -158,7 +158,7 @@ namespace WaterInteraction
                 excludeSimulation = false,
 
                 errorBuffer = errorBuffer,
-                candidateLocationWSBuffer = candidatePositionBuffer,
+                candidateLocationWSBuffer = candidatePositionWorldSpaceBuffer,
                 projectedPositionWSBuffer = projectedPositionWorldSpaceBuffer,
                 directionBuffer = directionBuffer,
                 stepCountBuffer = stepCountBuffer
@@ -262,7 +262,7 @@ namespace WaterInteraction
         private void DisposeRoutine() 
         {
             projectedPositionWorldSpaceBuffer.Dispose();
-            candidatePositionBuffer.Dispose();
+            candidatePositionWorldSpaceBuffer.Dispose();
             targetPositionBuffer.Dispose();
             directionBuffer.Dispose();
             stepCountBuffer.Dispose();
