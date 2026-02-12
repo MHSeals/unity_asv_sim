@@ -1,0 +1,21 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+dotnet_diagnostic.IDE0005.severity = suggestion
+
+dotnet_naming_rule.interface_should_be_prefixed_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_prefixed_with_i.symbols = interfaces
+dotnet_naming_rule.interface_should_be_prefixed_with_i.style = pascal_case_with_i_prefix
+
+csharp_style_namespace_declaration = block_scoped:true
+csharp_style_using_directive_placement = outside_namespace:true
+csharp_new_line_before_open_brace = none
+dotnet_diagnostic.IDE0130.severity = none
+file_header_template = namespace Sim.$FilePath$

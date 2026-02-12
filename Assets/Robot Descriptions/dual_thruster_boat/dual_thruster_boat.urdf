@@ -1,0 +1,351 @@
+<robot name="robot">
+  <link name="base_footprint"></link>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.6 0.4 0.2" />
+      </geometry>
+      <material name="base_link-material">
+        <color rgba="0.04666508633021928 0.03954623527052923 0.061246054224174035 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.6 0.4 0.2" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="20" />
+      <inertia ixx="3.333333333333333" ixy="0" ixz="0" iyy="3.333333333333333" iyz="0" izz="3.333333333333333" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_tuppy_back_rail" type="fixed">
+    <parent link="base_link" />
+    <child link="tuppy_back_rail" />
+    <origin xyz="0 -0.15 -0.125" rpy="0 0 0" />
+  </joint>
+  <link name="tuppy_back_rail">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+      <material name="tuppy_back_rail-material">
+        <color rgba="0.04666508633021928 0.03954623527052923 0.061246054224174035 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="5" />
+      <inertia ixx="0.8333333333333333" ixy="0" ixz="0" iyy="0.8333333333333333" iyz="0" izz="0.8333333333333333" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_tuppy_front_rail" type="fixed">
+    <parent link="base_link" />
+    <child link="tuppy_front_rail" />
+    <origin xyz="0 0.15 -0.125" rpy="0 0 0" />
+  </joint>
+  <link name="tuppy_front_rail">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+      <material name="tuppy_front_rail-material">
+        <color rgba="0.04666508633021928 0.03954623527052923 0.061246054224174035 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="5" />
+      <inertia ixx="0.8333333333333333" ixy="0" ixz="0" iyy="0.8333333333333333" iyz="0" izz="0.8333333333333333" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_right_hull" type="fixed">
+    <parent link="base_link" />
+    <child link="right_hull" />
+    <origin xyz="0.3875 0.3 -0.2625" rpy="0 0 0" />
+  </joint>
+  <link name="right_hull">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.125 1.3 0.225" />
+      </geometry>
+      <material name="right_hull-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.125 1.3 0.225" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="150" />
+      <inertia ixx="25" ixy="0" ixz="0" iyy="25" iyz="0" izz="25" />
+    </inertial>
+  </link>
+  <joint name="right_hull_to_right_thruster_mount" type="fixed">
+    <parent link="right_hull" />
+    <child link="right_thruster_mount" />
+    <origin xyz="0 -0.670125 -0.13" rpy="0 0 0" />
+  </joint>
+  <link name="right_thruster_mount">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.04 0.04 0.175" />
+      </geometry>
+      <material name="right_thruster_mount-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="right_thruster_mount_to_right_thruster" type="fixed">
+    <parent link="right_thruster_mount" />
+    <child link="right_thruster" />
+    <origin xyz="0 -0.029874999999999985 -0.06351779898061413" rpy="0 0 0" />
+  </joint>
+  <link name="right_thruster">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.07 0.02 0.07" />
+      </geometry>
+      <material name="right_thruster-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_left_hull" type="fixed">
+    <parent link="base_link" />
+    <child link="left_hull" />
+    <origin xyz="-0.3875 0.3 -0.2625" rpy="0 0 0" />
+  </joint>
+  <link name="left_hull">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.125 1.3 0.225" />
+      </geometry>
+      <material name="left_hull-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.125 1.3 0.225" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="150" />
+      <inertia ixx="25" ixy="0" ixz="0" iyy="25" iyz="0" izz="25" />
+    </inertial>
+  </link>
+  <joint name="left_hull_to_left_thruster_mount" type="fixed">
+    <parent link="left_hull" />
+    <child link="left_thruster_mount" />
+    <origin xyz="0 -0.670125 -0.125" rpy="0 0 0" />
+  </joint>
+  <link name="left_thruster_mount">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.04 0.04 0.175" />
+      </geometry>
+      <material name="left_thruster_mount-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="left_thruster_mount_to_left_thruster" type="fixed">
+    <parent link="left_thruster_mount" />
+    <child link="left_thruster" />
+    <origin xyz="0 -0.029874999999999985 -0.06851779898061414" rpy="0 0 0" />
+  </joint>
+  <link name="left_thruster">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.07 0.02 0.07" />
+      </geometry>
+      <material name="left_thruster-material">
+        <color rgba="0.01764195448412081 0.013702083043526807 0.030713443727452196 1" />
+      </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+  </link>
+  <joint name="base_link_to_sensor_rail" type="fixed">
+    <parent link="base_link" />
+    <child link="sensor_rail" />
+    <origin xyz="0 0.725 -0.125" rpy="0 0 0" />
+  </joint>
+  <link name="sensor_rail">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+      <material name="sensor_rail-material">
+        <color rgba="0.04666508633021928 0.03954623527052923 0.061246054224174035 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.9 0.05 0.05" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="10" />
+      <inertia ixx="1.6666666666666665" ixy="0" ixz="0" iyy="1.6666666666666665" iyz="0" izz="1.6666666666666665" />
+    </inertial>
+  </link>
+  <joint name="sensor_rail_to_lidar" type="fixed">
+    <parent link="sensor_rail" />
+    <child link="lidar" />
+    <origin xyz="0 0 0.05" rpy="0 0 0" />
+  </joint>
+  <link name="lidar">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.05" />
+      </geometry>
+      <material name="lidar-material">
+        <color rgba="0.37626212298046485 0.012286488353353374 0.026241221889696346 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.05" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.3333333333333333" ixy="0" ixz="0" iyy="0.5" iyz="0" izz="0.3333333333333333" />
+    </inertial>
+
+        <sensor type="lidar" name="lidar">
+            <always_on>true</always_on>
+            <update_rate>5</update_rate>
+            <origin>0 0 0.05 0 0 0</origin>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>6.28</max_angle>
+                    </horizontal>
+                    <range>
+                        <min>0.12</min>
+                        <max>3.5</max>
+                        <resolution>0.015</resolution>
+                    </range>
+                </scan>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+        </sensor>
+      </link>
+  <joint name="sensor_rail_to_cube1" type="fixed">
+    <parent link="sensor_rail" />
+    <child link="cube1" />
+    <origin xyz="0 0.035 0" rpy="0 0 0" />
+  </joint>
+  <link name="cube1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.035" />
+      </geometry>
+      <material name="cube1-material">
+        <color rgba="0.8468732315065057 0.033104766565152086 0.04373502925049377 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.025 0.035" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0.16666666666666666" ixy="0" ixz="0" iyy="0.16666666666666666" iyz="0" izz="0.16666666666666666" />
+    </inertial>
+
+        <sensor name="camera" type="camera">
+            <always_on>true</always_on>
+            <update_rate>100</update_rate>
+            <origin>0 0.035 0 0 0 0</origin>
+            <camera>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>800</width>
+                    <height>600</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.01</mean>
+                </noise>
+            </camera>
+        </sensor>
+      </link>
+</robot>
