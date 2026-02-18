@@ -64,5 +64,8 @@
     "editor.suggest.showReferences": true,
     "dotnet.codeLens.enableReferencesCodeLens": false,
     "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    }
 }

@@ -4,43 +4,42 @@ using RosMessageTypes.Std;
 using Sim.Utils.ROS;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
+using NUnit.Framework.Internal.Execution;
 
 namespace Sim.Sensors.Vision {
     [System.Serializable]
-    public class ObjectEntry
-    {
+    public class ObjectEntry {
         public GameObject obj;
         public string id;
     }
 
     public class BoundingBox3D : MonoBehaviour {
-        [SerializeField, Range(0.01f, 0.3f)] private float visualRadius = 0.05f;
-        [SerializeField] private bool drawGizmo = false;
         [SerializeField] private string topicName = "/detections";
         [SerializeField] private string frameId = "front_camera_link";
         [SerializeField] private Camera sensorCamera;
-        [SerializeField] private float Hz = 10.0f;
+        [SerializeField] private float Hz = 10f;
 
-        public ROSPublisher publisher { get; set; }
-        private float timeSincePublish = 0.0f;
-        
+        [SerializeField] private bool drawGizmos = true;
+        [SerializeField] private float gizmoScale = 0.05f;
+
+        private ROSPublisher publisher;
+        private float timeSincePublish;
+
         [SerializeField] private List<ObjectEntry> objects = new();
         private Dictionary<GameObject, string> objectDict = new();
 
         private void Awake() {
-            objectDict.Clear();
             foreach (var entry in objects) {
                 if (entry.obj != null && !string.IsNullOrEmpty(entry.id))
                     objectDict[entry.obj] = entry.id;
             }
-        
+
             if (sensorCamera == null) {
-                Debug.LogError("Missing a camera reference.");
+                Debug.LogError("Missing camera reference.");
                 enabled = false;
                 return;
             }
-        
+
             publisher = gameObject.AddComponent<ROSPublisher>();
         }
 
@@ -50,181 +49,180 @@ namespace Sim.Sensors.Vision {
 
         private void FixedUpdate() {
             timeSincePublish += Time.fixedDeltaTime;
-            if (timeSincePublish > 1.0f / Hz) {
+            if (timeSincePublish >= 1f / Hz) {
                 publisher.Publish();
-                timeSincePublish = 0.0f;
+                timeSincePublish = 0f;
             }
         }
 
-        public Detection3DArrayMsg CreateMessage() {
+        private void OnDrawGizmos() {
+            if (!drawGizmos) return;
+
+            foreach (var entry in objects) {
+                if (entry.obj == null) continue;
+
+                ComputeLocalBounds(entry.obj, out Vector3 localCenter, out Vector3 size);
+
+                Vector3 worldCenter = entry.obj.transform.TransformPoint(localCenter);
+                Quaternion rotation = entry.obj.transform.rotation;
+
+                DrawBoundingBox(worldCenter, rotation, size);
+            }
+        }
+
+        private void DrawBoundingBox(Vector3 center, Quaternion rotation, Vector3 size) {
+            Vector3 half = size * 0.5f;
+
+            Vector3[] localOffsets = new Vector3[]
+            {
+                new(-half.x, -half.y, -half.z),
+                new( half.x, -half.y, -half.z),
+                new( half.x, -half.y,  half.z),
+                new(-half.x, -half.y,  half.z),
+
+                new(-half.x,  half.y, -half.z),
+                new( half.x,  half.y, -half.z),
+                new( half.x,  half.y,  half.z),
+                new(-half.x,  half.y,  half.z),
+            };
+
+            Vector3[] corners = new Vector3[8];
+
+            for (int i = 0; i < 8; i++)
+                corners[i] = center + rotation * localOffsets[i];
+
+            Gizmos.color = Color.red;
+
+            foreach (var c in corners)
+                Gizmos.DrawSphere(c, gizmoScale);
+
+            int[,] edges = {
+                {0,1},{1,2},{2,3},{3,0},
+                {4,5},{5,6},{6,7},{7,4},
+                {0,4},{1,5},{2,6},{3,7}
+            };
+
+            for (int i = 0; i < 12; i++)
+                Gizmos.DrawLine(corners[edges[i, 0]], corners[edges[i, 1]]);
+        }
+
+        private Detection3DArrayMsg CreateMessage() {
             List<Detection3DMsg> detections = new();
-        
+
             foreach (var kvp in objectDict) {
                 GameObject obj = kvp.Key;
                 string id = kvp.Value;
-        
-                Vector3[] corners = ComputeCorners(obj);
-                Vector3 centroid = ComputeCentroid(corners);
-        
-                Vector3 screenPoint = sensorCamera.WorldToViewportPoint(centroid);
-                bool onScreen =
+
+                ComputeLocalBounds(obj, out Vector3 localCenter, out Vector3 localSize);
+
+                Vector3 worldCenter = obj.transform.TransformPoint(localCenter);
+
+                Vector3 screenPoint = sensorCamera.WorldToViewportPoint(worldCenter);
+                bool visible =
                     screenPoint.z > 0 &&
                     screenPoint.x > 0 && screenPoint.x < 1 &&
                     screenPoint.y > 0 && screenPoint.y < 1;
-        
-                if (onScreen)
-                    detections.Add(GenerateDetection(corners, id));
+
+                if (!visible)
+                    continue;
+
+                // Transform to camera frame
+                worldCenter -= transform.position;
+
+                // Transform to Unity representation
+                Vector3 rosPosition = UnityToROSPosition(worldCenter);
+                Quaternion rosRotation = UnityToROSRotation(obj.transform.rotation);
+
+                detections.Add(
+                    GenerateDetection(rosPosition, rosRotation, localSize, id)
+                );
             }
-        
-            HeaderMsg header = publisher.CreateHeader();
-            return new Detection3DArrayMsg(header, detections.ToArray());
+
+            return new Detection3DArrayMsg(
+                publisher.CreateHeader(),
+                detections.ToArray()
+            );
         }
 
-        private Detection3DMsg GenerateDetection(Vector3[] corners, string id) {
-        
-            Vector3 centroid = ComputeCentroid(corners);
-            Vector3 dimensions = ComputeDimensions(corners);
-        
-            Quaternion q = Quaternion.identity;
-        
-            PoseMsg pose = new PoseMsg(
-                new PointMsg(centroid.x, centroid.y, centroid.z),
-                new QuaternionMsg(q.x, q.y, q.z, q.w)
+        private Detection3DMsg GenerateDetection(
+            Vector3 rosPosition,
+            Quaternion rosRotation,
+            Vector3 size,
+            string id) {
+            PoseMsg pose = new(
+                new PointMsg(rosPosition.x, rosPosition.y, rosPosition.z),
+                new QuaternionMsg(rosRotation.x, rosRotation.y, rosRotation.z, rosRotation.w)
             );
-        
-            // Zero covariance (36 values)
+
             double[] covariance = new double[36];
-        
+
             ObjectHypothesisWithPoseMsg hypothesis =
                 new(
                     new ObjectHypothesisMsg(id, 1.0f),
                     new PoseWithCovarianceMsg(pose, covariance)
                 );
-        
+
             BoundingBox3DMsg bbox = new(
-                new PoseMsg(
-                    new PointMsg(centroid.x, centroid.y, centroid.z),
-                    new QuaternionMsg(q.x, q.y, q.z, q.w)
-                ),
-                new Vector3Msg(dimensions.x, dimensions.y, dimensions.z)
+                pose,
+                new Vector3Msg(size.x, size.y, size.z)
             );
-        
-            HeaderMsg header = publisher.CreateHeader();
-        
+
             return new Detection3DMsg(
-                header,
-                new ObjectHypothesisWithPoseMsg[] { hypothesis },
+                publisher.CreateHeader(),
+                new[] { hypothesis },
                 bbox,
                 id
             );
         }
 
-        private Vector3 ComputeDimensions(Vector3[] corners) {
-            Vector3 min = corners[0];
-            Vector3 max = corners[0];
-        
-            foreach (var c in corners) {
-                min = Vector3.Min(min, c);
-                max = Vector3.Max(max, c);
+        private void ComputeLocalBounds(
+            GameObject obj,
+            out Vector3 center,
+            out Vector3 size) {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+
+            if (renderers.Length == 0) {
+                center = Vector3.zero;
+                size = Vector3.zero;
+                return;
             }
-        
-            return max - min;
-        }
-        
-        private Vector3 ComputeCentroid(Vector3[] corners) {
-            Vector3 total = Vector3.zero;
-            foreach (Vector3 corner in corners) total += corner;
-            return total / corners.Length;
-        }
-
-        private Vector3[] ComputeCorners(GameObject obj) {
-            Renderer[] renderers = GetComponentsInChildren<Renderer>();
-
-            if (renderers.Length == 0) return Enumerable.Repeat(obj.transform.position, 8).ToArray();
-
-            Transform root = transform;
 
             bool initialized = false;
             Vector3 min = Vector3.zero;
             Vector3 max = Vector3.zero;
-            Vector3 c, e; 
 
             foreach (var r in renderers) {
-                Bounds b = r.bounds;
+                Bounds b = r.localBounds;
 
-                // Get 8 world corners of this renderer's bounds
-                c = b.center;
-                e = b.extents;
+                Vector3 worldCenter = r.transform.TransformPoint(b.center);
+                Vector3 localCenter = obj.transform.InverseTransformPoint(worldCenter);
 
-                Vector3[] corners = new Vector3[8]
-                {
-                    c + new Vector3(-e.x,-e.y,-e.z),
-                    c + new Vector3(e.x,-e.y,-e.z),
-                    c + new Vector3(-e.x,e.y,-e.z),
-                    c + new Vector3(e.x,e.y,-e.z),
-                    c + new Vector3(-e.x,-e.y,e.z),
-                    c + new Vector3(e.x,-e.y,e.z),
-                    c + new Vector3(-e.x,e.y,e.z),
-                    c + new Vector3(e.x,e.y,e.z)
-                };
+                Vector3 extents = b.extents;
 
-                // Convert to parent local space
-                foreach (var corner in corners) {
-                    Vector3 local = root.InverseTransformPoint(corner);
+                Vector3 localMin = localCenter - extents;
+                Vector3 localMax = localCenter + extents;
 
-                    if (!initialized) {
-                        min = max = local;
-                        initialized = true;
-                    } else {
-                        min = Vector3.Min(min, local);
-                        max = Vector3.Max(max, local);
-                    }
+                if (!initialized) {
+                    min = localMin;
+                    max = localMax;
+                    initialized = true;
+                }
+                else {
+                    min = Vector3.Min(min, localMin);
+                    max = Vector3.Max(max, localMax);
                 }
             }
 
-            c = (min + max) * 0.5f;
-            e = (max - min) * 0.5f;
-
-            Vector3[] localCorners = new Vector3[8] {
-                c + new Vector3(-e.x,-e.y,-e.z),
-                c + new Vector3(e.x,-e.y,-e.z),
-                c + new Vector3(-e.x,e.y,-e.z),
-                c + new Vector3(e.x,e.y,-e.z),
-                c + new Vector3(-e.x,-e.y,e.z),
-                c + new Vector3(e.x,-e.y,e.z),
-                c + new Vector3(-e.x,e.y,e.z),
-                c + new Vector3(e.x,e.y,e.z)
-            };
-
-            Vector3[] worldCorners = new Vector3[8];
-            for (int i = 0; i < 8; i++)
-                worldCorners[i] = transform.TransformPoint(localCorners[i]);
-
-            return worldCorners;
+            center = (min + max) * 0.5f;
+            size = max - min;
         }
 
-        private void OnDrawGizmos() {
-            if (!drawGizmo) return;
-            foreach(var kvp in objectDict) DrawBoundingBox(ComputeCorners(kvp.Key));
+        private Vector3 UnityToROSPosition(Vector3 unityPos) {
+            return new Vector3(unityPos.z, -unityPos.x, unityPos.y);
         }
 
-        void DrawBoundingBox(Vector3[] corners) {
-            Gizmos.color = Color.red;
-
-            foreach (var corner in corners)
-                Gizmos.DrawSphere(corner, visualRadius);
-
-            int[,] edges = {
-                {0,1},{1,3},{3,2},{2,0},
-                {4,5},{5,7},{7,6},{6,4},
-                {0,4},{1,5},{2,6},{3,7}
-            };
-
-            for (int i = 0; i < edges.GetLength(0); i++)
-                Gizmos.DrawLine(
-                    corners[edges[i, 0]],
-                    corners[edges[i, 1]]
-                );
+        private Quaternion UnityToROSRotation(Quaternion unityRot) {
+            return Quaternion.AngleAxis(-90f, Vector3.up) * Quaternion.AngleAxis(-90f, Vector3.forward) * unityRot;
         }
     }
 }
