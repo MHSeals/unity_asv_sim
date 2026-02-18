@@ -7,33 +7,38 @@ using UnityEngine.Rendering.HighDefinition;
 using Sim.Utils.ROS;
 
 namespace Sim.Sensors.Vision {
-    [RequireComponent(typeof(Camera))]
     public class ROSDepthCameraAsync : MonoBehaviour, IROSSensor<ImageMsg> {
         private static byte[] s_ScratchSpace;
 
         [SerializeField] private RenderTexture depthRenderTexture;
+        [SerializeField] private Camera sensorCamera;
 
         [SerializeField] private string topicName = "camera/depth";
-        [SerializeField] private string frameId = "camera_link_optical_frame";
+        [SerializeField] private string frameId = "front_camera_link";
         [SerializeField] private float Hz = 15.0f;
         public ROSPublisher publisher { get; set; }
 
         private CustomPassVolume customPassVolume;
         private CameraDepthBake depthBakePass = new();
-        private Camera cam;
         private Texture2D depthTex2D;
         private float timeSincePublish = 0.0f;
 
         private void Awake() {
+            if (sensorCamera == null) {
+                Debug.LogError("Missing a camera reference.");
+                enabled = false;
+                return;
+            }
+
             publisher = gameObject.AddComponent<ROSPublisher>();
         }
 
         private void Start() {
-            cam = GetComponent<Camera>();
+            sensorCamera = GetComponent<Camera>();
             customPassVolume = gameObject.AddComponent<CustomPassVolume>();
             customPassVolume.injectionPoint = CustomPassInjectionPoint.AfterPostProcess;
-            customPassVolume.targetCamera = cam;
-            depthBakePass.bakingCamera = cam;
+            customPassVolume.targetCamera = sensorCamera;
+            depthBakePass.bakingCamera = sensorCamera;
             depthBakePass.depthTexture = depthRenderTexture;
             customPassVolume.customPasses.Add(depthBakePass);
 

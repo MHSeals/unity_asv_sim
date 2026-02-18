@@ -5,27 +5,30 @@ using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 using Sim.Utils.ROS;
 
 namespace Sim.Sensors.Vision {
-    [RequireComponent(typeof(Camera))]
     public class ROSCameraAsync : MonoBehaviour, IROSSensor<ImageMsg> {
         [SerializeField] private RenderTexture rgbRenderTexture;
+        [SerializeField] private Camera sensorCamera;
 
         [SerializeField] private string topicName = "camera/image_raw";
-        [SerializeField] private string frameId = "camera_link_optical_frame";
+        [SerializeField] private string frameId = "front_camera_link";
         [SerializeField] private float Hz = 15.0f;
         public ROSPublisher publisher { get; set; }
 
-        private Camera sensorCamera;
         private Texture2D rgbTexture2D;
         private float timeSincePublish = 0.0f;
 
         private void Awake() {
+            if (sensorCamera == null) {
+                Debug.LogError("Missing a camera reference.");
+                enabled = false;
+                return;
+            }
+
             publisher = gameObject.AddComponent<ROSPublisher>();
         }
 
         private void Start() {
-            sensorCamera = GetComponent<Camera>();
             sensorCamera.targetTexture = rgbRenderTexture;
-
             publisher.Initialize(topicName, frameId, CreateMessage, Hz, true);
         }
 

@@ -6,14 +6,13 @@ namespace Sim.Sensors.Vision {
         Depth
     }
 
-    [RequireComponent(typeof(Camera))]
     public class ProcessRenderTexture : MonoBehaviour {
         [SerializeField] private SensorEnum sensorType;
         [SerializeField] private RenderTexture inputRenderTexture;
         [SerializeField] private RenderTexture normalsRenderTexture;
         [SerializeField] private RenderTexture outputRenderTexture;
         [SerializeField] private bool drawFrustum = false;
-        private Camera cam;
+        private Camera sensorCamera;
 
         [SerializeField, Range(0.0f, 1.0f)] private float flatNoise = 0.0f;
         [SerializeField, Range(0.0f, 1.0f)] private float depthAngleNoiseGain = 0.0f;
@@ -26,10 +25,17 @@ namespace Sim.Sensors.Vision {
         private Vector3[] frustumCorners = new Vector3[4];
         private Vector3[] normCorners = new Vector3[4];
 
+        private void Awake() {
+            if (sensorCamera == null) {
+                Debug.LogError("Missing a camera reference.");
+                enabled = false;
+                return;
+            }
+        }
+
         private void Start() {
             if (sensorType == SensorEnum.Depth) {
                 mat = new Material(Shader.Find("Unlit/NoiseDistortDepth"));
-                cam = GetComponent<Camera>();
             }
             else if (sensorType == SensorEnum.RGB) {
                 mat = new Material(Shader.Find("Unlit/NoiseDistortRGB"));
@@ -39,13 +45,13 @@ namespace Sim.Sensors.Vision {
         private void Update() {
             if (sensorType == SensorEnum.Depth) {
                 mat.SetTexture("_NormalsTex", normalsRenderTexture);
-                cam.CalculateFrustumCorners(new Rect(0, 0, 1, 1), cam.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, frustumCorners);
+                sensorCamera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), sensorCamera.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, frustumCorners);
 
                 for (int i = 0; i < 4; i++) {
-                    normCorners[i] = cam.transform.TransformVector(frustumCorners[i]);
+                    normCorners[i] = sensorCamera.transform.TransformVector(frustumCorners[i]);
                     normCorners[i] = normCorners[i].normalized;
                     if (drawFrustum)
-                        Debug.DrawRay(cam.transform.position, normCorners[i], Color.red);
+                        Debug.DrawRay(sensorCamera.transform.position, normCorners[i], Color.red);
                 }
 
                 mat.SetVector("_BL", normCorners[0]);
