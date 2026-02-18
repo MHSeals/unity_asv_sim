@@ -12,7 +12,7 @@ namespace Sim.Sensors.Vision {
         [SerializeField] private RenderTexture normalsRenderTexture;
         [SerializeField] private RenderTexture outputRenderTexture;
         [SerializeField] private bool drawFrustum = false;
-        private Camera sensorCamera;
+        [SerializeField] private Camera sensorCamera;
 
         [SerializeField, Range(0.0f, 1.0f)] private float flatNoise = 0.0f;
         [SerializeField, Range(0.0f, 1.0f)] private float depthAngleNoiseGain = 0.0f;
