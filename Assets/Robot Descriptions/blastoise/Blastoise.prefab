@@ -251,7 +251,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.3
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: -0.27711, y: -0.0126, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -290,10 +290,10 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
+  m_LinearDamping: 4
   m_AngularDamping: 8
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: -0, y: 0, z: 0}
+  m_CenterOfMass: {x: -0, y: -0.2, z: 0}
   m_InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409715076648177000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7631001c063f69d4495bca90731abab2, type: 3}
   m_Name: 
@@ -341,6 +341,238 @@ MonoBehaviour:
   jointName: sensor_mount_joint
   EffortLimit: 1000
   VelocityLimit: 1000
+--- !u!1 &430858478334528574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124875459242486217}
+  - component: {fileID: 7252236208909801342}
+  - component: {fileID: 2222617839679708309}
+  - component: {fileID: 8760647045008411385}
+  m_Layer: 0
+  m_Name: front_camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1124875459242486217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430858478334528574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3584964216127979938}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!20 &7252236208909801342
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430858478334528574}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 1
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 9f5e8a649754a6243baf61f0c90b3c8c, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &2222617839679708309
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430858478334528574}
+  m_Enabled: 1
+--- !u!114 &8760647045008411385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430858478334528574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalCameraData
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 0
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 0.5
+  TAAQuality: 1
+  taaSharpenMode: 0
+  taaRingingReduction: 0
+  taaHistorySharpening: 0.35
+  taaAntiFlicker: 0.5
+  taaMotionVectorRejection: 0
+  taaAntiHistoryRinging: 0
+  taaBaseBlendFactor: 0.875
+  taaJitterScale: 1
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_FocusDistance: 10
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  xrRendering: 1
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  screenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  screenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  allowDeepLearningSuperSampling: 1
+  deepLearningSuperSamplingUseCustomQualitySettings: 0
+  deepLearningSuperSamplingQuality: 0
+  deepLearningSuperSamplingUseCustomAttributes: 0
+  deepLearningSuperSamplingUseOptimalSettings: 1
+  deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
+  fsrOverrideSharpness: 0
+  fsrSharpness: 0.92
+  exposureTarget: {fileID: 0}
+  materialMipBias: 0
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 5770166122053581
+      data2: 12934340311651418136
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    sssQualityMode: 0
+    sssQualityLevel: 0
+    sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
+    msaaMode: 1
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
 --- !u!1 &593671619948516808
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +706,229 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46398bc5d6905ad429a6d2d973afe002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Robotics.UrdfImporter::Unity.Robotics.UrdfImporter.UrdfCollisions
+--- !u!1 &887317657353698590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1198576120765790414}
+  - component: {fileID: 2686435529929260059}
+  - component: {fileID: 1215377809567280560}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1198576120765790414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887317657353698590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.042798284, y: -0.7058104, z: 0.042798284, w: 0.7058104}
+  m_LocalPosition: {x: 2.561, y: 0.867, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8763587276732716985}
+  m_LocalEulerAnglesHint: {x: 6.94, y: -90, z: 0}
+--- !u!20 &2686435529929260059
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887317657353698590}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 1
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &1215377809567280560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887317657353698590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalCameraData
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 0
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 0.5
+  TAAQuality: 1
+  taaSharpenMode: 0
+  taaRingingReduction: 0
+  taaHistorySharpening: 0.35
+  taaAntiFlicker: 0.5
+  taaMotionVectorRejection: 0
+  taaAntiHistoryRinging: 0
+  taaBaseBlendFactor: 0.875
+  taaJitterScale: 1
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_FocusDistance: 10
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  xrRendering: 1
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  screenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  screenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  allowDeepLearningSuperSampling: 1
+  deepLearningSuperSamplingUseCustomQualitySettings: 0
+  deepLearningSuperSamplingQuality: 0
+  deepLearningSuperSamplingUseCustomAttributes: 0
+  deepLearningSuperSamplingUseOptimalSettings: 1
+  deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
+  fsrOverrideSharpness: 0
+  fsrSharpness: 0.92
+  exposureTarget: {fileID: 0}
+  materialMipBias: 0
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 5770166122053581
+      data2: 12934340311651418136
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    sssQualityMode: 0
+    sssQualityLevel: 0
+    sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
+    msaaMode: 1
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
 --- !u!1 &894007171508077010
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +1066,7 @@ Transform:
   - {fileID: 7155249216408790572}
   - {fileID: 4441030106483710704}
   - {fileID: 8609486237206330500}
+  - {fileID: 1198576120765790414}
   m_Father: {fileID: 6659781381358495525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7119556032900333155
@@ -635,7 +1091,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1100795179572341516}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 3
+  m_Mass: 5
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -675,10 +1131,10 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
-  m_AngularDamping: 12
+  m_LinearDamping: 4
+  m_AngularDamping: 15
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: -0, y: -0.12, z: 0}
+  m_CenterOfMass: {x: -0, y: -0.23, z: 0}
   m_InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -688,7 +1144,7 @@ ArticulationBody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 0
-  m_ImplicitTensor: 0
+  m_ImplicitTensor: 1
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
@@ -699,7 +1155,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100795179572341516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7631001c063f69d4495bca90731abab2, type: 3}
   m_Name: 
@@ -775,7 +1231,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100795179572341516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48d5fb5f7e6e11f48b5f492d488e04a3, type: 3}
   m_Name: 
@@ -1291,7 +1747,7 @@ ArticulationBody:
   m_GameObject: {fileID: 2086102411953065473}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 0.01
+  m_Mass: 0.015
   m_ParentAnchorPosition: {x: -0.00000001962682, y: 0.0052899984, z: -0.00036999583}
   m_ParentAnchorRotation: {x: 0, y: 0, z: -0.7071069, w: 0.7071069}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -1332,7 +1788,7 @@ ArticulationBody:
     targetVelocity: 0
     driveType: 0
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 1.3
   m_JointFriction: 0
   m_CenterOfMass: {x: 0.00027, y: -0.00043, z: 0.00019}
   m_InertiaTensor: {x: 0.000001, y: 0.000001, z: 0.000001}
@@ -1818,7 +2274,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 7
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: 0, y: -0.078, z: 0.3302}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -1857,10 +2313,10 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
-  m_AngularDamping: 8
+  m_LinearDamping: 4
+  m_AngularDamping: 15
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: -0, y: -0.25, z: 0}
+  m_CenterOfMass: {x: -0, y: -0.3, z: 0}
   m_InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -1870,7 +2326,7 @@ ArticulationBody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 0
-  m_ImplicitTensor: 0
+  m_ImplicitTensor: 1
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
@@ -2208,8 +2664,9 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.427
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
-  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_ParentAnchorPosition: {x: -0.26637, y: -0.28232002, z: -0.012870014}
+  m_ParentAnchorRotation: {x: 0.0000016391277, y: -0.9238788, z: -0.0000007003546,
+    w: 0.38268554}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_MatchAnchors: 1
@@ -2406,8 +2863,9 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.427
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
-  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_ParentAnchorPosition: {x: 0.2663, y: -0.28432, z: 0.012820005}
+  m_ParentAnchorRotation: {x: -0.0000007003546, y: 0.3826843, z: -0.0000016987324,
+    w: 0.92387927}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_MatchAnchors: 1
@@ -2781,7 +3239,7 @@ ArticulationBody:
   m_GameObject: {fileID: 3742857257110263301}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 0.01
+  m_Mass: 0.015
   m_ParentAnchorPosition: {x: 0.000000010175503, y: 0.0052899984, z: 0.00036999583}
   m_ParentAnchorRotation: {x: 0, y: 0, z: -0.7071069, w: 0.7071069}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -2822,7 +3280,7 @@ ArticulationBody:
     targetVelocity: 0
     driveType: 0
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 1.3
   m_JointFriction: 0
   m_CenterOfMass: {x: 0.00027, y: -0.00043, z: -0.00019}
   m_InertiaTensor: {x: 0.000001, y: 0.000001, z: 0.000001}
@@ -2902,6 +3360,8 @@ GameObject:
   - component: {fileID: 8456486705529259454}
   - component: {fileID: 8091342147614376626}
   - component: {fileID: 7964816976761655757}
+  - component: {fileID: 1834016212954740347}
+  - component: {fileID: 3042137074771484436}
   m_Layer: 0
   m_Name: lidar_link
   m_TagString: Untagged
@@ -2949,7 +3409,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: -0.012699991, y: 0.29035, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -2988,10 +3448,10 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
+  m_LinearDamping: 4
   m_AngularDamping: 8
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: 0.0001, y: -0.00111, z: 0.00004}
+  m_CenterOfMass: {x: 0.0001, y: -0.1, z: 0.00004}
   m_InertiaTensor: {x: 0.00011837721, y: 0.00017000003, z: 0.00018162275}
   m_InertiaRotation: {x: -0.21723132, y: -0.672912, z: -0.672912, w: -0.21723132}
   m_IncludeLayers:
@@ -3012,7 +3472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778515348648561578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7631001c063f69d4495bca90731abab2, type: 3}
   m_Name: 
@@ -3039,6 +3499,51 @@ MonoBehaviour:
   jointName: lidar_joint
   EffortLimit: 1000
   VelocityLimit: 1000
+--- !u!114 &1834016212954740347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778515348648561578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360f33ed38c668c49a2b8bc7c68dade4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Lidar.Lidar2D
+  minAngleDegrees: -180
+  maxAngleDegrees: 180
+  angleIncrementDegrees: 0.8
+  minRange: 0.1
+  maxRange: 50
+  batchSize: 500
+  drawRays: 0
+  topicName: scan
+  frameId: lidar_link
+  Hz: 5
+--- !u!114 &3042137074771484436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778515348648561578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe66d9c4bec6aeb4eaeea83341aabeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Lidar.Lidar3D
+  maxRange: 100
+  numHorizontalBeams: 4500
+  numVerticalBeams: 16
+  minDistance: 0.3
+  horizontalFOV: 6.2831855
+  verticalFOV: 1.5707964
+  batchSize: 500
+  drawRays: 0
+  topicName: points
+  frameId: lidar_link
+  Hz: 10
 --- !u!1 &3841879332025144327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3187,7 +3692,7 @@ ArticulationBody:
   m_GameObject: {fileID: 4113120035386283078}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 0.01
+  m_Mass: 0.015
   m_ParentAnchorPosition: {x: 0.000000010744845, y: 0.005289997, z: -0.00037001027}
   m_ParentAnchorRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -3228,7 +3733,7 @@ ArticulationBody:
     targetVelocity: 0
     driveType: 0
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 1.3
   m_JointFriction: 0
   m_CenterOfMass: {x: 0.00014, y: -0.00038, z: 0.00024}
   m_InertiaTensor: {x: 0.000001, y: 0.000001, z: 0.000001}
@@ -3356,8 +3861,9 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.427
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
-  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_ParentAnchorPosition: {x: 0.26625, y: -0.28232002, z: -0.012769997}
+  m_ParentAnchorRotation: {x: 0.0000007003546, y: -0.3826843, z: -0.0000016987324,
+    w: 0.92387927}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_MatchAnchors: 1
@@ -3649,6 +4155,7 @@ GameObject:
   - component: {fileID: 4654933847591499625}
   - component: {fileID: 2677333198314937659}
   - component: {fileID: 6581252949043524556}
+  - component: {fileID: 7467815095551098784}
   m_Layer: 0
   m_Name: ball_dropper_link
   m_TagString: Untagged
@@ -3696,7 +4203,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: -0.53779, y: 0.208, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -3738,7 +4245,7 @@ ArticulationBody:
   m_LinearDamping: 0.05
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: 0.14922, y: -0.00072, z: 0}
+  m_CenterOfMass: {x: 0.14922, y: -0.06, z: 0}
   m_InertiaTensor: {x: 0.00029446493, y: 0.00071553525, z: 0.00088999997}
   m_InertiaRotation: {x: 0.3990917, y: -0.916911, z: 1.067425e-10, w: -4.6460388e-11}
   m_IncludeLayers:
@@ -3759,7 +4266,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4586056882386629747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7631001c063f69d4495bca90731abab2, type: 3}
   m_Name: 
@@ -3786,6 +4293,20 @@ MonoBehaviour:
   jointName: ball_dropper_joint
   EffortLimit: 1000
   VelocityLimit: 1000
+--- !u!114 &7467815095551098784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4586056882386629747}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05b05054d07e9b64a2b97d459b2d8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UtilsAssembly::Sim.Utils.VisualizeCenterOfMass
+  visualRadius: 0.05
+  drawGizmo: 0
 --- !u!1 &4693042776900118673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,7 +4367,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: 0.09, y: 0, z: -0.12}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -4092,7 +4613,7 @@ ArticulationBody:
   m_GameObject: {fileID: 5325575762777009155}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 0.01
+  m_Mass: 0.015
   m_ParentAnchorPosition: {x: -0.000000019057477, y: 0.005289997, z: 0.00037001027}
   m_ParentAnchorRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -4133,7 +4654,7 @@ ArticulationBody:
     targetVelocity: 0
     driveType: 0
   m_LinearDamping: 1
-  m_AngularDamping: 1
+  m_AngularDamping: 1.3
   m_JointFriction: 0
   m_CenterOfMass: {x: 0.00014, y: -0.00039, z: -0.00024}
   m_InertiaTensor: {x: 0.000001, y: 0.000001, z: 0.000001}
@@ -4395,6 +4916,12 @@ GameObject:
   - component: {fileID: 2722623985953601437}
   - component: {fileID: 7919007779277469791}
   - component: {fileID: 4173455216965524439}
+  - component: {fileID: 4025038214280494272}
+  - component: {fileID: 7804433559628881899}
+  - component: {fileID: 3256144980719966680}
+  - component: {fileID: 122967543639509790}
+  - component: {fileID: 4400172706351399178}
+  - component: {fileID: 3133999688409307359}
   m_Layer: 0
   m_Name: front_camera_link
   m_TagString: Untagged
@@ -4417,6 +4944,7 @@ Transform:
   m_Children:
   - {fileID: 112395982744753662}
   - {fileID: 5169384130608310574}
+  - {fileID: 1124875459242486217}
   m_Father: {fileID: 7155249216408790572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1651987449124243677
@@ -4442,7 +4970,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: -0.049899995, y: 0.13779, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -4481,7 +5009,7 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
+  m_LinearDamping: 4
   m_AngularDamping: 8
   m_JointFriction: 0.05
   m_CenterOfMass: {x: -0.00231, y: -0.00004, z: 0.00058}
@@ -4532,6 +5060,135 @@ MonoBehaviour:
   jointName: front_camera_joint
   EffortLimit: 1000
   VelocityLimit: 1000
+--- !u!114 &4025038214280494272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7176e5b19304af4abef5f25ebc64ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.CameraInfo
+  topicName: camera/camera_info
+  frameId: front_camera_link
+  Hz: 5
+  sensorCamera: {fileID: 7252236208909801342}
+--- !u!114 &7804433559628881899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252e063020d674d42a4706b92513941f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.ProcessRenderTexture
+  sensorType: 0
+  inputRenderTexture: {fileID: 8400000, guid: 9f5e8a649754a6243baf61f0c90b3c8c, type: 2}
+  normalsRenderTexture: {fileID: 8400000, guid: 6b1cfb535279b0449ac0e5e1a263a284,
+    type: 2}
+  outputRenderTexture: {fileID: 8400000, guid: edcd97a8adf9d9a4a9bae5ff41fa20c7, type: 2}
+  drawFrustum: 0
+  sensorCamera: {fileID: 7252236208909801342}
+  flatNoise: 0
+  depthAngleNoiseGain: 0
+  K1: 0
+  K2: 0
+  K3: 0
+  T1: 0
+  T2: 0
+--- !u!114 &3256144980719966680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252e063020d674d42a4706b92513941f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.ProcessRenderTexture
+  sensorType: 1
+  inputRenderTexture: {fileID: 8400000, guid: d33415c87b3d5ac4eb2fd138cfd0a98c, type: 2}
+  normalsRenderTexture: {fileID: 8400000, guid: 6b1cfb535279b0449ac0e5e1a263a284,
+    type: 2}
+  outputRenderTexture: {fileID: 8400000, guid: 53de5ec294fbae041ad325683dfe6bca, type: 2}
+  drawFrustum: 0
+  sensorCamera: {fileID: 7252236208909801342}
+  flatNoise: 0
+  depthAngleNoiseGain: 0
+  K1: 0
+  K2: 0
+  K3: 0
+  T1: 0
+  T2: 0
+--- !u!114 &122967543639509790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b063bdbfddfeb6e9d6190309aa998f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.ROSCameraAsync
+  rgbRenderTexture: {fileID: 8400000, guid: 9f5e8a649754a6243baf61f0c90b3c8c, type: 2}
+  sensorCamera: {fileID: 7252236208909801342}
+  topicName: camera/image_raw
+  frameId: front_camera_link
+  Hz: 15
+--- !u!114 &4400172706351399178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c48939e0b5d868c9d2dcd3f1dc5380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.ROSDepthCameraAsync
+  depthRenderTexture: {fileID: 8400000, guid: d33415c87b3d5ac4eb2fd138cfd0a98c, type: 2}
+  sensorCamera: {fileID: 7252236208909801342}
+  topicName: camera/depth
+  frameId: front_camera_link
+  Hz: 15
+--- !u!114 &3133999688409307359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937371456924922527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36916718061608d79f5c75b980a521d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SensorsAssembly::Sim.Sensors.Vision.BoundingBox3D
+  topicName: /detections
+  frameId: front_camera_link
+  sensorCamera: {fileID: 7252236208909801342}
+  Hz: 10
+  drawGizmos: 1
+  gizmoScale: 0.05
+  objects:
+  - obj: {fileID: 0}
+    id: green_pole_buoy
+  - obj: {fileID: 0}
+    id: green_pole_buoy
+  - obj: {fileID: 0}
+    id: red_pole_buoy
+  - obj: {fileID: 0}
+    id: red_pole_buoy
 --- !u!1 &6382777769473952513
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,7 +5344,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 7
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: 0, y: -0.08, z: -0.3302}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -4726,10 +5383,10 @@ ArticulationBody:
     target: 0
     targetVelocity: 0
     driveType: 0
-  m_LinearDamping: 8
-  m_AngularDamping: 8
+  m_LinearDamping: 4
+  m_AngularDamping: 15
   m_JointFriction: 0.05
-  m_CenterOfMass: {x: -0, y: -0.25, z: 0}
+  m_CenterOfMass: {x: -0, y: -0.3, z: 0}
   m_InertiaTensor: {x: 0.001, y: 0.001, z: 0.001}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -4739,7 +5396,7 @@ ArticulationBody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 0
-  m_ImplicitTensor: 0
+  m_ImplicitTensor: 1
   m_Immovable: 0
   m_UseGravity: 1
   m_CollisionDetectionMode: 0
@@ -4837,7 +5494,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: -0.44955, y: 0.10149, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -4987,7 +5644,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: 0.18, y: 0, z: -0.12}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -5589,8 +6246,9 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 5
   m_Mass: 0.427
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
-  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_ParentAnchorPosition: {x: -0.26636, y: -0.28432, z: 0.012870014}
+  m_ParentAnchorRotation: {x: -0.0000016391277, y: 0.9238788, z: -0.0000007003546,
+    w: 0.38268554}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_MatchAnchors: 1
