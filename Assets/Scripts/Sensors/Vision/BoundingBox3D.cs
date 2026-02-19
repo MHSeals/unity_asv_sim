@@ -1,10 +1,8 @@
 using RosMessageTypes.Vision;
 using RosMessageTypes.Geometry;
-using RosMessageTypes.Std;
 using Sim.Utils.ROS;
 using UnityEngine;
 using System.Collections.Generic;
-using NUnit.Framework.Internal.Execution;
 
 namespace Sim.Sensors.Vision {
     [System.Serializable]
@@ -18,6 +16,9 @@ namespace Sim.Sensors.Vision {
         [SerializeField] private string frameId = "front_camera_link";
         [SerializeField] private Camera sensorCamera;
         [SerializeField] private float Hz = 10f;
+
+        [SerializeField] private float minDist = 1f;
+        [SerializeField] private float maxDist = 20f;
 
         [SerializeField] private bool drawGizmos = true;
         [SerializeField] private float gizmoScale = 0.05f;
@@ -123,15 +124,24 @@ namespace Sim.Sensors.Vision {
                     screenPoint.x > 0 && screenPoint.x < 1 &&
                     screenPoint.y > 0 && screenPoint.y < 1;
 
-                if (!visible)
+                float dist = Vector3.Magnitude(worldCenter - sensorCamera.transform.position);
+                bool inRange = minDist <= dist && dist <= maxDist;
+
+                if (!visible || !inRange)
                     continue;
 
                 // Transform to camera frame
-                worldCenter -= transform.position;
+                Vector3 cameraSpaceCenter =
+                    sensorCamera.transform.InverseTransformPoint(worldCenter);
 
-                // Transform to Unity representation
-                Vector3 rosPosition = UnityToROSPosition(worldCenter);
-                Quaternion rosRotation = UnityToROSRotation(obj.transform.rotation);
+                // Rotation in camera frame
+                Quaternion cameraSpaceRotation =
+                    Quaternion.Inverse(sensorCamera.transform.rotation) *
+                    obj.transform.rotation;
+
+                // Convert to ROS
+                Vector3 rosPosition = UnityToROSPosition(cameraSpaceCenter);
+                Quaternion rosRotation = UnityToROSRotation(cameraSpaceRotation);
 
                 detections.Add(
                     GenerateDetection(rosPosition, rosRotation, localSize, id)
@@ -197,7 +207,7 @@ namespace Sim.Sensors.Vision {
                 Vector3 worldCenter = r.transform.TransformPoint(b.center);
                 Vector3 localCenter = obj.transform.InverseTransformPoint(worldCenter);
 
-                Vector3 extents = b.extents;
+                Vector3 extents = Vector3.Scale(b.extents, r.transform.lossyScale);
 
                 Vector3 localMin = localCenter - extents;
                 Vector3 localMax = localCenter + extents;
@@ -226,3 +236,4 @@ namespace Sim.Sensors.Vision {
         }
     }
 }
+
