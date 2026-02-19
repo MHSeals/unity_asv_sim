@@ -136,8 +136,8 @@ namespace Sim.Sensors.Vision {
 
                 // Rotation in camera frame
                 Quaternion cameraSpaceRotation =
-                    Quaternion.Inverse(sensorCamera.transform.rotation) *
-                    obj.transform.rotation;
+                    Quaternion.Inverse(obj.transform.rotation) *
+                    sensorCamera.transform.rotation;
 
                 // Convert to ROS
                 Vector3 rosPosition = UnityToROSPosition(cameraSpaceCenter);
@@ -228,11 +228,11 @@ namespace Sim.Sensors.Vision {
         }
 
         private Vector3 UnityToROSPosition(Vector3 unityPos) {
-            return new Vector3(unityPos.z, -unityPos.x, unityPos.y);
+            return new Vector3(unityPos.x, unityPos.z, unityPos.y);
         }
 
         private Quaternion UnityToROSRotation(Quaternion unityRot) {
-            return Quaternion.AngleAxis(-90f, Vector3.up) * Quaternion.AngleAxis(-90f, Vector3.forward) * unityRot;
+            return Quaternion.AngleAxis(-90f, Vector3.forward) * Quaternion.AngleAxis(-90f, Vector3.up) * Quaternion.AngleAxis(-90f, Vector3.forward) * unityRot;
         }
     }
 }
