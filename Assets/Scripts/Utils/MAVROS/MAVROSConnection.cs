@@ -129,8 +129,8 @@ namespace Sim.Sensors.Nav
 
                 data.imu.gyro = new float[]
                 {
-                    -imu.body.angularVelocity.x * Mathf.Deg2Rad,
-                    -imu.body.angularVelocity.z * Mathf.Deg2Rad,
+                    imu.body.angularVelocity.z * Mathf.Deg2Rad,
+                    imu.body.angularVelocity.x * Mathf.Deg2Rad,
                     imu.body.angularVelocity.y * Mathf.Deg2Rad
                 };
 
@@ -138,22 +138,22 @@ namespace Sim.Sensors.Nav
 
                 data.position = new float[]
                 {
-                    -imu.body.position.x,
                     imu.body.position.z,
+                    imu.body.position.x,
                     imu.body.position.y
                 };
 
                 data.attitude = new float[]
                 {
+                    imu.body.transform.eulerAngles.z * Mathf.Deg2Rad,
                     imu.body.transform.eulerAngles.x * Mathf.Deg2Rad,
-                    -imu.body.transform.eulerAngles.z * Mathf.Deg2Rad,
                     imu.body.transform.eulerAngles.y * Mathf.Deg2Rad
                 };
 
                 data.velocity = new float[]
                 {
-                    -imu.body.linearVelocity.x,
                     imu.body.linearVelocity.z,
+                    imu.body.linearVelocity.x,
                     imu.body.linearVelocity.y
                 };
             }
