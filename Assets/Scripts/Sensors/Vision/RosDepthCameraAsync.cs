@@ -13,7 +13,7 @@ namespace Sim.Sensors.Vision {
         [SerializeField] private RenderTexture depthRenderTexture;
         [SerializeField] private Camera sensorCamera;
 
-        [SerializeField] private string topicName = "camera/depth";
+        [SerializeField] private string topicName = "camera/depth/image_rect_raw";
         [SerializeField] private string frameId = "front_camera_link";
         [SerializeField] private float Hz = 15.0f;
         public ROSPublisher publisher { get; set; }
